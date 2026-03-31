@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GF Grievance Portal 💔</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    h1 {
+      color: #6a0572;
+    }
+
+    .box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      width: 320px;
+      margin: auto;
+      box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+    }
+
+    input, select {
+      width: 90%;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #ff85a2;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ff4d6d;
+    }
+
+    .emoji {
+      font-size: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🐘🌸 GF Grievance Portal 🌸🐘</h1>
+  <div class="emoji">🐘 🌼 🌸 🐘</div>
+
+  <div class="box">
+
+    <input type="text" id="issue" placeholder="What did I do wrong? 😭">
+
+    <select id="category">
+      <option>Late Reply 😤</option>
+      <option>Forgot Something 😑</option>
+      <option>Attitude 😒</option>
+      <option>Other 🤷‍♀️</option>
+    </select>
+
+    <input type="text" id="solution" placeholder="What should I do for you? 😌">
+
+    <button onclick="submitComplaint()">Send Complaint 💌</button>
+
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBK5Rh-lthMrU3gc-9vEQXUiSeRQnAZhos",
+      authDomain: "project2-965b4.firebaseapp.com",
+      projectId: "project2-965b4",
+      storageBucket: "project2-965b4.firebasestorage.app",
+      messagingSenderId: "165150065285",
+      appId: "1:165150065285:web:26f6d0b448679312c65fec"
+
+
+          };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    function submitComplaint() {
+      const issue = document.getElementById("issue").value;
+      const category = document.getElementById("category").value;
+      const solution = document.getElementById("solution").value;
+
+      db.collection("complaints").add({
+        issue,
+        category,
+        solution,
+        status: "Pending 🐘",
+        time: new Date()
+      });
+
+      alert("Complaint sent with love 🌸🐘");
+    }
+  </script>
+
+</body>
+</html>
